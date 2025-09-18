@@ -10,14 +10,13 @@ library(fs)
 # --- Configuration ---
 
 # 1. Define the directory containing the simulation files.
-#    You can change this to "bootstrap_results" to process the other simulation set.
-sim_results_dir <- "srp_bootstrap_results"
+sim_results_dir <- "bootstrap_results"
 
 # 2. Define the name for the final output file.
-output_file <- "srp_subsamples.csv"
+output_file <- "bootstrap_subsamples.csv"
 
 # 3. Define how many values to sample from each simulation file.
-sample_size <- 10
+sample_size <- 20
 
 # --- Subsampling Process ---
 
@@ -26,11 +25,11 @@ file_paths <- dir_ls(sim_results_dir, glob = "*.csv")
 
 # Define a function to read one file, take a sample, and return it in a tidy format
 subsample_file <- function(file_path) {
-  # Read the simulation data. The column is named 'x' by default from write.csv
+  # Read the simulation data. The column is named "V1" in the bootstrap_results files.
   sim_data <- read_csv(file_path, show_col_types = FALSE)
   
   # Take a random sample of size `sample_size`
-  subsample_values <- sample(sim_data[[1]], size = sample_size, replace = FALSE)
+  subsample_values <- sample(sim_data$V1, size = sample_size, replace = FALSE)
   
   # Return a tibble with the source file name and the subsampled values
   tibble(
