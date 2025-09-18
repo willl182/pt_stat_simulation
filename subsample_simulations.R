@@ -27,10 +27,10 @@ file_paths <- dir_ls(sim_results_dir, glob = "*.csv")
 # Define a function to read one file, take a sample, and return it in a tidy format
 subsample_file <- function(file_path) {
   # Read the simulation data. The column is named 'x' by default from write.csv
-  sim_data <- read_csv(file_path, show_col_types = FALSE)
+  sim_data <- read_csv(file_path, show_col_types = FALSE, col_names = c("V1"), skip = 1)
   
   # Take a random sample of size `sample_size`
-  subsample_values <- sample(sim_data$x, size = sample_size, replace = FALSE)
+  subsample_values <- sample(sim_data$V1, size = sample_size, replace = FALSE)
   
   # Return a tibble with the source file name and the subsampled values
   tibble(
