@@ -13,6 +13,7 @@ library(tidyverse)
 # --- 1. Lectura de Datos ---
 # Define la ruta base y los nombres de los contaminantes
 data_path <- "test1_data"
+#pollutants <- c("o3", "co")
 pollutants <- c("co", "no", "no2", "o3", "so2")
 
 # Lee todos los archivos CSV en una lista nombrada de data frames

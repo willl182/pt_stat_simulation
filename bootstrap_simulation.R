@@ -8,6 +8,9 @@ library(boot)
 # Get a list of all CSV files in the 'subsets' directory
 file_list <- list.files(path = "subsets", pattern = "\\.csv$", full.names = TRUE)
 
+# Filter the file list to include only o3 and co simulations
+# file_list <- file_list[grepl("data_o3_|data_co_", basename(file_list))]
+
 # Define the statistic to bootstrap (the mean of the 'conc' or 'c' column)
 mean_statistic <- function(data, indices) {
   d <- data[indices, ]
